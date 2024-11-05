@@ -5,5 +5,5 @@ on: [pull_request]
 permissions: write-all
 
 jobs:
-  dependency-review:
+  workflow:
     uses: papayagaming/security-config/.github/workflows/security.yaml@main

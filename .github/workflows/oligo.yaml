@@ -9,7 +9,10 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  
+
+permissions:
+  pull-requests: write
+
 jobs:
   scan-pr:
     name: Scan comparing base and comment on pr
@@ -42,3 +45,12 @@ jobs:
           fail-build: true
           severity-cutoff: high
           output-format: json
+
+      - name: Add Oligo scanning results on Pull-request
+        if: ${{ steps.scan.outcome != 'success' }}
+        uses: mshick/add-pr-comment@v1
+        with:
+          message: |
+              New vulnerabilites detected:
+              ${{steps.scan.outputs.markdown}}
+          allow-repeats: false # Set to true to comment on every run

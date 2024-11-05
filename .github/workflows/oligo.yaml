@@ -1,0 +1,44 @@
+name: Oligo Vulnerability Scanner
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events
+  pull_request:
+    branches:
+      - '**'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+jobs:
+  scan-pr:
+    name: Scan comparing base and comment on pr
+    runs-on: papaya-runner
+    outputs:
+      json: ${{ steps.scan.outputs.json }}
+    steps:
+      - name: Checkout the main branch repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+          path: main
+
+      - name: Checkout base branch repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+          ref: ${{ github.event.pull_request.base.ref }}
+          path: base
+
+      - name: Scan both feature & main branches and compare output differences
+        id: scan
+        uses: papayagaming/oligo-code-scanner@master
+        continue-on-error: true
+        with:
+          path: './main'
+          base-path: './base'
+          fail-build: true
+          severity-cutoff: high
+          output-format: json

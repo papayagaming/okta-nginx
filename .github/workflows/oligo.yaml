@@ -37,7 +37,6 @@ jobs:
       - name: Scan both feature & main branches and compare output differences
         id: scan
         uses: papayagaming/oligo-code-scanner@master
-        continue-on-error: true
         with:
           path: './main'
           base-path: './base'
@@ -46,11 +45,4 @@ jobs:
           output-format: json
           only-fixed: true
           headers: 'CVE,Package Name,Severity,Fix Versions'
-
-      - name: Add Oligo scanning results on Pull-request
-        if: ${{ steps.scan.outcome != 'success' }}
-        uses: mshick/add-pr-comment@v2
-        with:
-          message: |
-              ${{steps.scan.outputs.markdown}}
-          allow-repeats: false # Set to true to comment on every run
+          create-pr-comment: true

@@ -46,3 +46,6 @@ jobs:
           only-fixed: true
           headers: 'CVE,Package Name,Severity,Fix Versions'
           create-pr-comment: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTIONS_STEP_DEBUG: true

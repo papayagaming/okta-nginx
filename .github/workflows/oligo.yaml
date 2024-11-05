@@ -1,9 +1,7 @@
 name: 'Dependency Review'
 on: [pull_request]
 
-permissions:
-  contents: read
-  pull-requests: write
+permissions: write-all
 jobs:
   dependency-review:
     runs-on: ubuntu-latest
@@ -14,4 +12,3 @@ jobs:
         uses: actions/dependency-review-action@v4
         with:
           config-file: 'papayagaming/security-config/dependency-review-config.yml@main'
-          external-repo-token: ${{ secrets.GITHUB_TOKEN }} # or a personal access token

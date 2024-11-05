@@ -7,3 +7,4 @@ permissions: write-all
 jobs:
   dependency-review:
     uses: papayagaming/security-config/.github/workflows/security.yaml@main
+    

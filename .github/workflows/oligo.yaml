@@ -51,7 +51,7 @@ jobs:
         if: ${{ steps.scan.outcome != 'success' }}
         uses: mshick/add-pr-comment@v2
         with:
+          update-only: true
           message: |
-              New vulnerabilites detected:
               ${{steps.scan.outputs.markdown}}
           allow-repeats: false # Set to true to comment on every run

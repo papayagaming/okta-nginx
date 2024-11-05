@@ -6,4 +6,4 @@ permissions: write-all
 
 jobs:
   dependency-review:
-    uses: papayagaming/security-config/scanner.yml@main
+    uses: papayagaming/security-config/.github/workflows/scanner.yaml@main

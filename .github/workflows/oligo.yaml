@@ -45,6 +45,7 @@ jobs:
           severity-cutoff: high
           output-format: json
           only-fixed: true
+          headers: 'CVE,Package Name,Severity,Fix Versions'
 
       - name: Add Oligo scanning results on Pull-request
         if: ${{ steps.scan.outcome != 'success' }}

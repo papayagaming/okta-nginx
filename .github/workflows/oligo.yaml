@@ -36,7 +36,7 @@ jobs:
 
       - name: Scan both feature & main branches and compare output differences
         id: scan
-        uses: papayagaming/oligo-code-scanner@master
+        uses: papayagaming/oligo-code-scanner@231d534118c08d3bc71f6077ea2dcb4aa8830eec
         with:
           path: './main'
           base-path: './base'

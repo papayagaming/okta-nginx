@@ -13,5 +13,5 @@ jobs:
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v4
         with:
-          comment-summary-in-pr: on-failure
-          fail-on-severity: high
+          config-file: 'papayagaming/security-config/dependency-review-config.yml@main'
+          external-repo-token: ${{ secrets.GITHUB_TOKEN }} # or a personal access token          
